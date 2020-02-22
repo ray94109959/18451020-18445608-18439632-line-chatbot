@@ -1,12 +1,10 @@
 # 18451020-18445608-18439632-line-chatbot
 #Milestone 1 - Chatbot Design and Setup
-1. The bot should be able to differentiate at least X different types of queries and give X different types of
-responses, where X is the number of students in your group.
+1. The bot should be able to differentiate at least X different types of queries and give X different types of responses, where X is the number of students in your group.
 2. The bot should use a redis server to store some persistent information.
 3. The bot should use consume another service other than redis.
 4. The bot should be running on Heroku, or an equivalent cloud.
-5. The design concept of the bot should be applicable to our society while the content (e.g. answer of
-questions, reported data) need not to be accurate, most updated, nor comprehensive.
+5. The design concept of the bot should be applicable to our society while the content (e.g. answer of questions, reported data) need not to be accurate, most updated, nor comprehensive.
 6. The bot should use git for version controls.
 7. The LINE bot should be written only with Python and its library.
 8. The web bot should be written only with Python and its library at back-end, while using Javascript +
@@ -14,6 +12,20 @@ HTML5 at frontend. The frontend code (i.e. the html and js) should NOT be placed
 
 -----------------------------------------------------------------------------
 #Chatbot Design
+- Our team will work on Line Chatbot
+- We will create 3 type of chatbot categories:
+    * Type of Queries 
+         * Goods (e.g Mask Inventory)
+            * The Shop or Pharmacy to purchase goods
+            * Hong Kong Mask Inventory
 
+         * COVID-19 News
+            * News headline & Content
+            * aggregate differnt media source 
 
+         * Confirmed cases of COVID-19 infection in Hong Kong
+            * Number of confirmed case 
+            * Number of recovered case
+
+       
 
