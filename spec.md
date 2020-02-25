@@ -1,11 +1,14 @@
-# 18451020-18445608-18439632-line-chatbot
 
-#Chatbot Design
+
+# Cloud Computing Project Specification
+
+
+## Chatbot Design
 
    - In response to this ongoing public health emergency, our team would like to develop a Line Chatbot for public enquiries regarding “COVID-19. Using this chatbot, user could easily use their mobile to track the following hot items in real-time.
 
    - We will create 3 type of chatbot categories:
-      * Type of Queries 
+      ### Type of Queries 
             * Goods (e.g Mask Inventory)
                * The Shop or Pharmacy to purchase goods
                * Hong Kong Mask Inventory
