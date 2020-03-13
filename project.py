@@ -78,7 +78,8 @@ def callback():
 # Handler function for Text Message
 def handle_TextMessage(event):
     print(event.message.text)
-    msg = 'You said: "' + event.message.text + '" '
+    #msg = 'You said: "' + event.message.text + '" '
+    msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(msg)
@@ -97,21 +98,21 @@ def handle_StickerMessage(event):
 def handle_ImageMessage(event):
     line_bot_api.reply_message(
 	event.reply_token,
-	TextSendMessage(text="Nice image!")
+	TextSendMessage(text="Sorry, I'm still learning the 'image' type question. At this moment, please kindly input text message as your question.")
     )
 
 # Handler function for Video Message
 def handle_VideoMessage(event):
     line_bot_api.reply_message(
 	event.reply_token,
-	TextSendMessage(text="Nice video!")
+	TextSendMessage(text="Sorry, I do not accept video!")
     )
 
 # Handler function for File Message
 def handle_FileMessage(event):
     line_bot_api.reply_message(
 	event.reply_token,
-	TextSendMessage(text="Nice file!")
+	TextSendMessage(text="Sorry, I do not accept file!")
     )
 
 if __name__ == "__main__":
