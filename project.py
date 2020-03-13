@@ -105,14 +105,14 @@ def handle_ImageMessage(event):
 def handle_VideoMessage(event):
     line_bot_api.reply_message(
 	event.reply_token,
-	TextSendMessage(text="Sorry, I do not accept video!")
+	TextSendMessage(text="Sorry, I do not accept video now!")
     )
 
 # Handler function for File Message
 def handle_FileMessage(event):
     line_bot_api.reply_message(
 	event.reply_token,
-	TextSendMessage(text="Sorry, I do not accept file!")
+	TextSendMessage(text="Sorry, I do not accept file now!")
     )
 
 if __name__ == "__main__":
