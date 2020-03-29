@@ -90,15 +90,11 @@ def handle_TextMessage(event):
         data = urllib.request.urlopen(url).read().decode()
         obj = json.loads(data)
         last = len(obj)-1
-        msg = "Latest situation of reported cases of COVID-19 in Hong Kong\n"
-        msg = msg + "\nNumber of confirmed cases: " + str(obj[last]['Number of confirmed cases'])
-        msg = msg + "\nNumber of ruled out cases: " + str(obj[last]['Number of ruled out cases'])
-        msg = msg + "\nNumber of cases still hospitalised for investigation: " + str(obj[last]['Number of cases still hospitalised for investigation'])
-        msg = msg + "\nNumber of cases fulfilling the reporting criteria: " + str(obj[last]['Number of cases fulfilling the reporting criteria'])
-        msg = msg + "\nNumber of death cases: " + str(obj[last]['Number of death cases'])
-        msg = msg + "\nNumber of discharge cases: " + str(obj[last]['Number of discharge cases'])
-        msg = msg + "\nNumber of probable cases: " + str(obj[last]['Number of probable cases'])
-        msg = msg + "\n\nAs: " + str(obj[last]['As of date']) + " " + str(obj[last]['As of time']) 
+        msg = "Latest situation of reported cases of COVID-19 in Hong Kong\n\n"
+
+        report = str(obj[last]).replace("'","")
+        report = report.replace(",","\n")
+        msg = msg + report 
     else:    
         msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
 
