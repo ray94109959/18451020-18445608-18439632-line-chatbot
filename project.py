@@ -85,14 +85,17 @@ def handle_TextMessage(event):
     
     if event.message.text == '2':
         url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Flatest_situation_of_reported_cases_wuhan_eng.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%7D' 
+        operUrl = urllib.request.urlopen(url)
+        if(operUrl.getcode()==200): 
+            data = operUrl.read().decode()
+            obj = json.loads(data)
+            last = len(obj)-1
+            msg = "Latest situation of reported cases of COVID-19 in Hong Kong\n\n"
 
-        data = urllib.request.urlopen(url).read().decode()
-        obj = json.loads(data)
-        last = len(obj)-1
-        msg = "Latest situation of reported cases of COVID-19 in Hong Kong\n\n"
-
-        report = str(obj[last]).replace("'","").replace("{","").replace("}","").replace(", ","\n")
-        msg = msg + report 
+            report = str(obj[last]).replace("'","").replace("{","").replace("}","").replace(", ","\n")
+            msg = msg + report 
+         else:
+             msg = "Server busy, please try again later...."   
     else:    
         msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
 
