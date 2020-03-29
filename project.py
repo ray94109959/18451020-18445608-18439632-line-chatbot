@@ -4,7 +4,6 @@ import os
 import sys
 import redis
 import json
-import urllib
 import urllib.request
 
 from argparse import ArgumentParser
