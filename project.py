@@ -93,6 +93,8 @@ def handle_TextMessage(event):
         msg = "Latest situation of reported cases of COVID-19 in Hong Kong\n\n"
 
         report = str(obj[last]).replace("'","")
+        report = str(obj[last]).replace("{","")
+        report = str(obj[last]).replace("}","")
         report = report.replace(",","\n")
         msg = msg + report 
     else:    
