@@ -82,8 +82,7 @@ def handle_TextMessage(event):
     #msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
     if event.message.text == 2:
         msg = 'You said: "' + event.message.text + '" '
-    else
-        msg = "Could you please tell me what are you looking for?\n1. Face Mask information\n2. Latest situation of reported cases of COVID-19 in Hong Kong\n3. Health Tips\n\nKindly press 1, 2 or 3"
+    msg = msg + "Could you please tell me what are you looking for?\n1. Face Mask information\n2. Latest situation of reported cases of COVID-19 in Hong Kong\n3. Health Tips\n\nKindly press 1, 2 or 3"
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(msg)
