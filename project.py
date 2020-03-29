@@ -4,6 +4,8 @@ import os
 import sys
 import redis
 import json
+import urllib
+import urllib.request
 
 from argparse import ArgumentParser
 
@@ -89,7 +91,8 @@ def handle_TextMessage(event):
         obj = json.loads(data)
         last = len(obj)-1
 
-        msg = 'You said: "' + event.message.text + '" '
+        msg = msg + obj[last]
+        
     msg = msg + "\n\nCould you please tell me what are you looking for?\n1. Face Mask information\n2. Latest cases of COVID-19 in Hong Kong\n3. Health Tips\n\nKindly press 1, 2 or 3"
     line_bot_api.reply_message(
         event.reply_token,
