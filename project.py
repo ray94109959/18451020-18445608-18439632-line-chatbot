@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 import os
 import sys
 import redis
+import json
 
 from argparse import ArgumentParser
 
@@ -82,6 +83,12 @@ def handle_TextMessage(event):
     #msg = 'You said: "' + event.message.text + '" '
     #msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
     if event.message.text == '2':
+        url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Flatest_situation_of_reported_cases_wuhan_eng.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%7D' 
+
+        data = urllib.request.urlopen(url).read().decode()
+        obj = json.loads(data)
+        last = len(obj)-1
+
         msg = 'You said: "' + event.message.text + '" '
     msg = msg + "\n\nCould you please tell me what are you looking for?\n1. Face Mask information\n2. Latest cases of COVID-19 in Hong Kong\n3. Health Tips\n\nKindly press 1, 2 or 3"
     line_bot_api.reply_message(
