@@ -79,7 +79,8 @@ def callback():
 def handle_TextMessage(event):
     print(event.message.text)
     #msg = 'You said: "' + event.message.text + '" '
-    msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
+    #msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
+    msg = "Could you please tell me what are you looking for?\n1. Face Mask information\n2. Case in Hong Kong\n3. Health Tips\n\nKindly press 1, 2 or 3"
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(msg)
