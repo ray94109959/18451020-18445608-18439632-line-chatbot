@@ -84,11 +84,12 @@ def handle_TextMessage(event):
     msg = ''
     #msg = 'You said: "' + event.message.text + '" '
     
-    if event.message.text.lower() == 'hi':
+    txt = event.message.text.upper()
+    if txt == 'HI':
         msg = "Hi, my name is Corona, your Novel-Coronavirus Service Ambassador. I can help to answer general inquiries about COVID-19!"
-    elif event.message.text == '1':
+    elif txt == '1':
         msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
-    elif event.message.text == '2':
+    elif txt == '2':
         url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Flatest_situation_of_reported_cases_wuhan_eng.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%7D' 
         operUrl = urllib.request.urlopen(url)
         if(operUrl.getcode()==200):
@@ -101,10 +102,10 @@ def handle_TextMessage(event):
             msg = msg + report 
         else:
             msg = "Server is busy, please try again later....."   
-    elif event.message.text == '3':
+    elif txt == '3':
         msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
     else:    
-        param = urllib.parse.quote(event.message.text)
+        param = urllib.parse.quote(txt)
         url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22'+param+'%22%5D%5D%5D%7D'
         operUrl = urllib.request.urlopen(url)
         if(operUrl.getcode()==200):
