@@ -115,7 +115,7 @@ def handle_TextMessage(event):
             if len(obj)>0:
                 msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws\n\n"
 
-                for location in obj
+                for location in obj:
                     msg = msg + location["地址 Address"] + "\n"
 
                 #report = str(obj).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
