@@ -5,6 +5,7 @@ import sys
 import redis
 import json
 import urllib.request
+import urllib.parse
 
 from argparse import ArgumentParser
 
@@ -101,7 +102,19 @@ def handle_TextMessage(event):
     elif event.message.text == '3':
         msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
     else:    
-        msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
+        param = urllib.parse.urlencode(event.message.text)
+        url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22a'+param+'%22%5D%5D%5D%7D' 
+        operUrl = urllib.request.urlopen(url)
+        if(operUrl.getcode()==200):
+            data = operUrl.read().decode()
+            obj = json.loads(data)
+           
+            msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws\n\n"
+
+            report = str(obj).replace("'","").replace("{","").replace("}","").replace(", ","\n")
+            msg = msg + report 
+        else:
+            msg = "Server is busy, please try again later....."  
 
     msg = msg + "\n\nCould you please tell me what are you looking for?\n1. Face Mask information\n2. Case in Hong Kong\n3. Health Tips\n\nKindly press 1, 2, 3 or input building for searching mandatory home quarantine"
     line_bot_api.reply_message(
