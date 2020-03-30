@@ -94,6 +94,8 @@ def handle_TextMessage(event):
 
             report = str(obj[last]).replace("'","").replace("{","").replace("}","").replace(", ","\n")
             msg = msg + report 
+        else:
+            msg = "Server is busy, please try again later....."   
     else:    
         msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
 
