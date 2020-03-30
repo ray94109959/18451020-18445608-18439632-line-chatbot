@@ -93,9 +93,9 @@ def handle_TextMessage(event):
             data = operUrl.read().decode()
             obj = json.loads(data)
             last = len(obj)-1
-            msg = "Latest situation of reported cases of COVID-19 in Hong Kong\n\n"
+            msg = "Latest situation of reported cases of COVID-19 in Hong Kong:\n\n"
 
-            report = str(obj[last]).replace("'","").replace("{","").replace("}","").replace(", ","\n")
+            report = str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace("'","").replace("\\n"," ").replace(", ","\n")
             msg = msg + report 
         else:
             msg = "Server is busy, please try again later....."   
@@ -103,17 +103,15 @@ def handle_TextMessage(event):
         msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
     else:    
         param = urllib.parse.quote(event.message.text)
-        url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22'+param+'%22%5D%5D%5D%7D' 
-        #url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22%E8%A5%BF%E7%92%B0%22%5D%5D%5D%7D'
+        url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22'+param+'%22%5D%5D%5D%7D'
         operUrl = urllib.request.urlopen(url)
         if(operUrl.getcode()==200):
             data = operUrl.read().decode()
             obj = json.loads(data)
            
-            msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws\n\n"
+            msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws:\n\n"
 
-            report = str(obj) 
-            #.replace("'","").replace("{","").replace("}","").replace(", ","\n")
+            report = str(obj).replace("[","").replace("]","").replace("{","").replace("}","").replace("'","").replace("\\n"," ").replace(", ","\n")
             msg = msg + report 
         else:
             msg = "Server is busy, please try again later....."  
