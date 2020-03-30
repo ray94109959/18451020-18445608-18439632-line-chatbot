@@ -95,7 +95,7 @@ def handle_TextMessage(event):
             last = len(obj)-1
             msg = "Latest situation of reported cases of COVID-19 in Hong Kong:\n\n"
 
-            report = str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace("'","").replace("\\n"," ").replace(", ","\n")
+            report = str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
             msg = msg + report 
         else:
             msg = "Server is busy, please try again later....."   
@@ -111,7 +111,7 @@ def handle_TextMessage(event):
            
             msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws:\n\n"
 
-            report = str(obj).replace("[","").replace("]","").replace("{","").replace("}","").replace("'","").replace("\\n"," ").replace(", ","\n")
+            report = str(obj).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
             msg = msg + report 
         else:
             msg = "Server is busy, please try again later....."  

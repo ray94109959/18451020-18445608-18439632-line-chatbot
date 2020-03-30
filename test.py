@@ -64,9 +64,9 @@ while True:
 
 
     #param = '%E8%A5%BF%E7%92%B0'
-    search = "西環"
-    print(search)
-    param = urllib.parse.quote(search)
+    
+    print(msg)
+    param = urllib.parse.quote(msg)
     print(param)
     #url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22%E8%A5%BF%E7%92%B0%22%5D%5D%5D%7D'
     url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22'+param+'%22%5D%5D%5D%7D'
