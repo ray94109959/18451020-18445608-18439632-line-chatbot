@@ -85,7 +85,7 @@ def handle_TextMessage(event):
     #msg = 'You said: "' + event.message.text + '" '
     
     txt = event.message.text.strip().upper()
-    if txt == 'HI' or txt == '0' or txt == '你好' or txt =='喂' or txt=='YO' or txt=='HALO' or txt=='HEY':
+    if txt == 'HI' or txt == '0' or txt == '你好' or txt =='喂' or txt=='YO' or txt=='HALO' or txt=='HEY' or txt=='HELLO' or txt=='早晨':
         msg = "Hi, my name is Corona, your Novel-Cronavirus Service Ambassador. I can help to answer general inquiries about COVID-19!"
     elif txt == '1':
         msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
