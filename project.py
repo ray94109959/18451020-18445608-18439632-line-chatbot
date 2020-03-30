@@ -93,7 +93,7 @@ def handle_TextMessage(event):
             data = operUrl.read().decode()
             obj = json.loads(data)
             last = len(obj)-1
-            msg = "Latest situation of reported cases of COVID-19 in Hong Kong:\n\n"
+            msg = "Latest situation of reported cases of COVID-19 in Hong Kongs\n\n"
 
             report = str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
             msg = msg + report 
@@ -109,7 +109,7 @@ def handle_TextMessage(event):
             data = operUrl.read().decode()
             obj = json.loads(data)
            
-            msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws:\n\n"
+            msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws\n\n"
 
             report = str(obj).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
             msg = msg + report 
