@@ -84,7 +84,7 @@ def handle_TextMessage(event):
     msg = ''
     #msg = 'You said: "' + event.message.text + '" '
     
-    txt = event.message.text.upper()
+    txt = event.message.text.strip().upper()
     if txt == 'HI' or txt == '0' or txt == '你好':    
         msg = "Hi, my name is Corona, your Novel-Coronavirus Service Ambassador. I can help to answer general inquiries about COVID-19!"
     elif txt == '1':
@@ -118,7 +118,7 @@ def handle_TextMessage(event):
                 report = str(obj).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
                 msg = msg + report
             else:
-                msg = "Sorry, no results found with '"+ event.message.text +"'. I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"    
+                msg = "Sorry, no results found with '"+ event.message.text +"'."    
         else:
             msg = "Server is busy, please try again later....."  
 
