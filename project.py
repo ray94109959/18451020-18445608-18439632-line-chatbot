@@ -84,45 +84,41 @@ def handle_TextMessage(event):
     msg = ''
     #msg = 'You said: "' + event.message.text + '" '
     
-    txt = event.message.text.strip().upper()
-    if txt == 'HI' or txt == '0' or txt == '你好':    
-        msg = "Hi, my name is Corona, your Novel-Coronavirus Service Ambassador. I can help to answer general inquiries about COVID-19!"
-    elif txt == '1':
+    if event.message.text == '1':
         msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
-    elif txt == '2':
+    elif event.message.text == '2':
         url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Flatest_situation_of_reported_cases_wuhan_eng.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%7D' 
         operUrl = urllib.request.urlopen(url)
         if(operUrl.getcode()==200):
             data = operUrl.read().decode()
             obj = json.loads(data)
             last = len(obj)-1
-            msg = "Latest situation of reported cases of COVID-19 in Hong Kongs\n\n"
+            msg = "Latest situation of reported cases of COVID-19 in Hong Kong\n\n"
 
-            report = str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
+            report = str(obj[last]).replace("'","").replace("{","").replace("}","").replace(", ","\n")
             msg = msg + report 
         else:
             msg = "Server is busy, please try again later....."   
-    elif txt == '3':
+    elif event.message.text == '3':
         msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
     else:    
-        param = urllib.parse.quote(txt)
-        url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22'+param+'%22%5D%5D%5D%7D'
+        #param = urllib.parse.urlencode(event.message.text)
+        #url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22a'+param+'%22%5D%5D%5D%7D' 
+        url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22%E8%A5%BF%E7%92%B0%22%5D%5D%5D%7D'
         operUrl = urllib.request.urlopen(url)
         if(operUrl.getcode()==200):
             data = operUrl.read().decode()
             obj = json.loads(data)
            
-            if len(obj)>0:
-                msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws\n\n"
+            msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws\n\n"
 
-                report = str(obj).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
-                msg = msg + report
-            else:
-                msg = "Sorry, no results found with '"+ event.message.text +"'. I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"    
+            report = str(obj) 
+            #.replace("'","").replace("{","").replace("}","").replace(", ","\n")
+            msg = msg + report 
         else:
             msg = "Server is busy, please try again later....."  
 
-    msg = msg + "\n\nCould you please tell me what are you looking for?\n1. Face Mask information\n2. Case in Hong Kong\n3. Health Tips\n\nKindly press 1, 2, 3\nOr input building for searching mandatory home quarantine"
+    msg = msg + "\n\nCould you please tell me what are you looking for?\n1. Face Mask information\n2. Case in Hong Kong\n3. Health Tips\n\nKindly press 1, 2, 3 or input building for searching mandatory home quarantine"
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(msg)
