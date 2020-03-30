@@ -109,10 +109,13 @@ def handle_TextMessage(event):
             data = operUrl.read().decode()
             obj = json.loads(data)
            
-            msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws\n\n"
+            if len(obj)>0:
+                msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws\n\n"
 
-            report = str(obj).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
-            msg = msg + report 
+                report = str(obj).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
+                msg = msg + report
+            else:
+                msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"    
         else:
             msg = "Server is busy, please try again later....."  
 
