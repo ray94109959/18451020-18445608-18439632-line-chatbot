@@ -96,7 +96,7 @@ def handle_TextMessage(event):
             data = operUrl.read().decode()
             obj = json.loads(data)
             last = len(obj)-1
-            msg = "Latest situation of reported cases of COVID-19 in Hong Kongs\n\n"
+            msg = "Latest situation of reported cases of COVID-19 in Hong Kong\n\n"
 
             report = str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
             msg = msg + report 
