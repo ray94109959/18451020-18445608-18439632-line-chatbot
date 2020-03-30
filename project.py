@@ -122,7 +122,7 @@ def handle_TextMessage(event):
         else:
             msg = "Server is busy, please try again later....."  
 
-    msg = msg + "\n\nCould you please tell me what are you looking for?\n1. Face Mask information\n2. Case in Hong Kong\n3. Health Tips\n\nKindly press 1, 2, 3\nOr\nInput building name/location for searching mandatory home quarantine"
+    msg = msg + "\n\nCould you please tell me what are you looking for?\n1. Face Mask information\n2. Case in Hong Kong\n3. Health Tips\n\nKindly press 1, 2, 3\nOR\nInput building name/location for searching mandatory home quarantine"
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(msg)
