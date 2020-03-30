@@ -56,7 +56,7 @@ def callback():
     except InvalidSignatureError:
         abort(400)
 
- # if event is MessageEvent and message is TextMessage, then echo text
+    # if event is MessageEvent and message is TextMessage, then echo text
     for event in events:
         if not isinstance(event, MessageEvent):
             continue
@@ -74,7 +74,7 @@ def callback():
         if not isinstance(event, MessageEvent):
             continue
         if not isinstance(event.message, TextMessage):
-            continue 
+            continue
 
     return 'OK'
 
@@ -166,4 +166,3 @@ if __name__ == "__main__":
     options = arg_parser.parse_args()
 
     app.run(host='0.0.0.0', debug=options.debug, port=heroku_port)
-
