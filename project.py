@@ -118,7 +118,7 @@ def handle_TextMessage(event):
                 report = str(obj).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
                 msg = msg + report
             else:
-                msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"    
+                msg = "Sorry, no results found with '"+ event.message.text +"'. I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"    
         else:
             msg = "Server is busy, please try again later....."  
 
