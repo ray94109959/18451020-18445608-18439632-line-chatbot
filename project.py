@@ -112,7 +112,8 @@ def handle_TextMessage(event):
            
             msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws\n\n"
 
-            report = str(obj).replace("'","").replace("{","").replace("}","").replace(", ","\n")
+            report = str(obj) 
+            #.replace("'","").replace("{","").replace("}","").replace(", ","\n")
             msg = msg + report 
         else:
             msg = "Server is busy, please try again later....."  
