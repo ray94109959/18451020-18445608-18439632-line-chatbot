@@ -85,7 +85,7 @@ def handle_TextMessage(event):
     
     if event.message.text == '1':
         msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
-    if event.message.text == '2':
+    elif event.message.text == '2':
         url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Flatest_situation_of_reported_cases_wuhan_eng.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%7D' 
         operUrl = urllib.request.urlopen(url)
         if(operUrl.getcode()==200):
@@ -98,12 +98,12 @@ def handle_TextMessage(event):
             msg = msg + report 
         else:
             msg = "Server is busy, please try again later....."   
-    if event.message.text == '3':
+    elif event.message.text == '3':
         msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
     else:    
         msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
 
-    msg = msg + "\n\nCould you please tell me what are you looking for?\n1. Face Mask information\n2. Case in Hong Kong\n3. Health Tips\n\nKindly press 1, 2 or 3"
+    msg = msg + "\n\nCould you please tell me what are you looking for?\n1. Face Mask information\n2. Case in Hong Kong\n3. Health Tips\n\nKindly press 1, 2, 3 or imput d"
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(msg)
