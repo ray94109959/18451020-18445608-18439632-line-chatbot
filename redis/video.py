@@ -15,20 +15,21 @@ redis1 = redis.Redis(host = HOST, password = PWD, port = PORT)
 
 
 while True:
-    msg = input("Please enter your query (type 'quit' or 'exit' to end):").strip()
+    url = 'https://youtu.be/FXBaQb8RHjI'
+    msg = input("Please enter your health tips video url (default video when empty, type 'quit' or 'exit' to end):").strip()
     if msg == 'quit' or msg == 'exit':
         break
     if msg == '':
-        continue
+        msg = url
     print("You have entered " + msg, end='\n') 
 
    
     # Add your code here
     
  
-    redis1.set('health_tips', 'https://youtu.be/FI3vfewG7N8')
+    redis1.set('health_tips', msg)
     url = redis1.get('health_tips').decode('UTF-8')
 
-    print(url)
+    #print(url)
 
 
