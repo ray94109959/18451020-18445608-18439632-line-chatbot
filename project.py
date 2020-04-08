@@ -22,6 +22,12 @@ from linebot.models import (
 )
 from linebot.utils import PY3
 
+HOST = "redis-18040.c1.ap-southeast-1-1.ec2.cloud.redislabs.com"
+PWD = "xmiprQJOCm4tKebf8zbudmXt9I99fiRV"
+PORT = "18040" 
+
+redis1 = redis.Redis(host = HOST, password = PWD, port = PORT)
+
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
@@ -103,7 +109,8 @@ def handle_TextMessage(event):
         else:
             msg = "Server is busy, please try again later....."   
     elif txt == '3':
-        msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
+        msg = "Please play the video to watch health tips as below:\n"
+        msg = msg + redis1.get('health_tips').decode('UTF-8')
     else:    
         param = urllib.parse.quote(txt)
         url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22'+param+'%22%5D%5D%5D%7D'

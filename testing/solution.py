@@ -22,5 +22,6 @@ while True:
     # Add your code here
     # Solution 
     redis1.incr(msg)
+    print(redis1.get(msg), end=' || ') 
     print(redis1.get(msg).decode('UTF-8'), end='')
     print(' times')

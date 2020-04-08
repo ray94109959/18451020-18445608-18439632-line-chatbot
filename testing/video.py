@@ -20,18 +20,15 @@ while True:
         break
     if msg == '':
         continue
-    print("You have entered " + msg, end=' ') 
+    print("You have entered " + msg, end='\n') 
 
    
     # Add your code here
     
-    count = 0
-    if redis1.get(msg):
-        count = int(redis1.get(msg))
+ 
+    redis1.set('health_tips', 'https://youtu.be/FI3vfewG7N8')
+    url = redis1.get('health_tips').decode('UTF-8')
 
-    value = 1 + count
-    redis1.set(msg, value)
-
-    print('for '+ str(value) +' times' )
+    print(url)
 
 
