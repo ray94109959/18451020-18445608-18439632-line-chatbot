@@ -57,7 +57,7 @@ for result in news:
     name = redis1.hmget("mask:{count}","name")[0].decode('UTF-8')
     des = redis1.hmget("mask:{count}","des")[0].decode('UTF-8')
     url = redis1.hmget("mask:{count}","url")[0].decode('UTF-8')
-    print("mask:{count}")
+    print("mask:"+str(count))
     print(name)
     print(des)
     print(url)
