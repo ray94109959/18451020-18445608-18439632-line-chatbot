@@ -14,7 +14,7 @@ crl = pycurl.Curl()
 
 # Set URL value
 #crl.setopt(crl.URL, 'https://wiki.python.org/moin/BeginnersGuide')
-crl.setopt(crl.URL, 'https://sme.hket.com/article/2555326/')
+crl.setopt(crl.URL, 'https://sme.hket.com/article/2555326')
 
 # Write bytes that are utf-8 encoded
 crl.setopt(crl.WRITEDATA, b_obj)
