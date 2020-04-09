@@ -1,35 +1,52 @@
-from __future__ import unicode_literals
-
-import redis
-
-
-# fill in the following.
-# HOST = "redis-11363.c1.asia-northeast1-1.gce.cloud.redislabs.com"
-# PWD = "1nOA0St0I7p9pQqu8HkQ18XqDfnoPeoL"
-# PORT = "11363" 
-HOST = "redis-18040.c1.ap-southeast-1-1.ec2.cloud.redislabs.com"
-PWD = "xmiprQJOCm4tKebf8zbudmXt9I99fiRV"
-PORT = "18040" 
-
-redis1 = redis.Redis(host = HOST, password = PWD, port = PORT)
+import re
+import pycurl
+from io import BytesIO 
 
 
-while True:
-    url = 'https://youtu.be/FXBaQb8RHjI'
-    msg = input("Please enter your health tips video url (default video if empty, type 'quit' or 'exit' to end):").strip()
-    if msg == 'quit' or msg == 'exit':
+b_obj = BytesIO() 
+crl = pycurl.Curl() 
+
+# Set URL value
+#crl.setopt(crl.URL, 'https://wiki.python.org/moin/BeginnersGuide')
+crl.setopt(crl.URL, 'https://sme.hket.com/article/2555326/')
+
+# Write bytes that are utf-8 encoded
+crl.setopt(crl.WRITEDATA, b_obj)
+
+# Perform a file transfer 
+crl.perform() 
+
+# End curl session
+crl.close()
+
+# Get the content stored in the BytesIO object (in byte characters) 
+get_body = b_obj.getvalue()
+
+# Decode the bytes stored in get_body to HTML and print the result 
+# print('Output of GET request:\n%s' % get_body.decode('utf8')) 
+
+s = get_body.decode('utf8')
+
+#print re.match(r'<.*?>', s).group()
+# pat = re.compile(r"\s*(?P<header>[^:]+)\s*:(?P<value>.*?)\s*$")
+# print(pat)
+
+html_body = get_body.decode('utf8')
+
+something = re.findall(r"\<p><strong>(.*)<\/strong><\/p>", html_body)
+somethingelse = re.findall(r"\<p>(.*)<a href=\"(.*)\" .*>\u8a73\u60c5<\/a><\/p>", html_body)
+
+# print (somethingelse)
+count = 0
+for result in somethingelse:
+    print (result)
+    count = count + 1
+    if  count >= 5:
         break
-    if msg == '':
-        msg = url
-    print("You have entered " + msg, end='\n') 
 
-   
-    # Add your code here
-    
- 
-    redis1.set('health_tips', msg)
-    url = redis1.get('health_tips').decode('UTF-8')
-
-    #print(url)
-
-
+count = 0
+for result in something:
+    print (result)
+    count = count + 1
+    if  count >= 5:
+        break
