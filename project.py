@@ -126,7 +126,7 @@ def handle_TextMessage(event):
                 for location in obj:
                     msg = msg + "\nEnd Date: " + location["家居檢疫最後日期 End Date of Home Quarantine Order"] + "\n" + location["地址 Address"] + "\n"
                     count = count + 1
-                    if  count >= 5:
+                    if  count >= 10:
                         break
 
                 #report = str(obj).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
