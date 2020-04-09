@@ -124,7 +124,8 @@ def handle_TextMessage(event):
 
                 count = 0
                 for location in obj:
-                    msg = msg + "\n End Date: " + location["家居檢疫最後日期 End Date of Home Quarantine Order"] + "\n" + location["地址 Address"] + "\n"
+                    msg = msg + "\nEnd Date: " + location["家居檢疫最後日期 End Date of Home Quarantine Order"] + "\n" + location["地址 Address"] + "\n"
+                    count = count + 1
                     if  count >= 5:
                         break
 
