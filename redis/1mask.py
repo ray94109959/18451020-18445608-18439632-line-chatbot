@@ -55,9 +55,13 @@ for result in news:
     redis1.hmset("mask:{count}", mask)
     items = redis1.hgetall("mask:{count}")
     name = redis1.hmget("mask:{count}","name")[0].decode('UTF-8')
-    #print(name)
-    for item in items:
-        print(items[item].decode('UTF-8'))
+    des = redis1.hmget("mask:{count}","des")[0].decode('UTF-8')
+    url = redis1.hmget("mask:{count}","url")[0].decode('UTF-8')
+    print(name)
+    print(des)
+    print(url)
+    # for item in items:
+    #     print(items[item].decode('UTF-8'))
 
     count = count + 1
     if  count >= 10:
