@@ -96,7 +96,7 @@ def handle_TextMessage(event):
     elif txt == '1':
         #msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
         msg = "Face Mask information:\n"
-        for count in range(0,10):
+        for count in range(10):
             msg  = msg + count+ "\n" + redis1.hmget("mask:{count}","name")[0].decode('UTF-8')
             msg  = msg + "\n" + redis1.hmget("mask:{count}","des")[0].decode('UTF-8')
             msg  = msg + "\n" + redis1.hmget("mask:{count}","url")[0].decode('UTF-8') + "\n"
