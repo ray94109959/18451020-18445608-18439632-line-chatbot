@@ -96,11 +96,11 @@ def handle_TextMessage(event):
     elif txt == '1':
         #msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
         msg = "Face Mask information:\n"
-        # for count in range(10):
-        #     mask = "mask:" + str(count)
-        #     msg  = msg + "\n" + redis1.hmget(mask,"name")[0].decode('UTF-8')
-        #     msg  = msg + "\n" + redis1.hmget(mask,"des")[0].decode('UTF-8')
-        #     msg  = msg + "\n" + redis1.hmget(mask,"url")[0].decode('UTF-8') + "\n"
+        for count in range(10):
+            mask = "mask:" + str(count)
+            msg  = msg + "\n" + redis1.hmget(mask,"name")[0].decode('UTF-8')
+            msg  = msg + "\n" + redis1.hmget(mask,"des")[0].decode('UTF-8')
+            msg  = msg + "\n" + redis1.hmget(mask,"url")[0].decode('UTF-8') + "\n"
     elif txt == '2':
         url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Flatest_situation_of_reported_cases_wuhan_eng.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%7D' 
         operUrl = urllib.request.urlopen(url)
