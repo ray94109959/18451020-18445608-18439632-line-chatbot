@@ -62,7 +62,7 @@ for result in news:
     print(name)
     print(des)
     print(url)
-    print(items)
+    # print(items)
     # for item in items:
     #     print(items[item].decode('UTF-8'))
 
