@@ -110,7 +110,7 @@ def handle_TextMessage(event):
             last = len(obj)-1
             msg = "Latest situation of reported cases of COVID-19 in Hong Kong\n\n"
 
-            report = str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n").replace(": ","\n")
+            report = str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n").replace("Number of ","")
             msg = msg + report 
         else:
             msg = "Server is busy, please try again later....."   
