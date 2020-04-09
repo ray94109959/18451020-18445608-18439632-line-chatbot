@@ -52,15 +52,17 @@ for result in news:
         "url": result[2]
     }
     # print (mask)
-    redis1.hmset("mask:{count}", mask)
-    items = redis1.hgetall("mask:{count}")
-    name = redis1.hmget("mask:{count}","name")[0].decode('UTF-8')
-    des = redis1.hmget("mask:{count}","des")[0].decode('UTF-8')
-    url = redis1.hmget("mask:{count}","url")[0].decode('UTF-8')
-    print("mask:"+str(count))
+    id = "mask:"+str(count)
+    redis1.hmset(id, mask)
+    items = redis1.hgetall(id)
+    name = redis1.hmget(id,"name")[0].decode('UTF-8')
+    des = redis1.hmget(id,"des")[0].decode('UTF-8')
+    url = redis1.hmget(id,"url")[0].decode('UTF-8')
+    print(id)
     print(name)
     print(des)
     print(url)
+    print(items)
     # for item in items:
     #     print(items[item].decode('UTF-8'))
 
