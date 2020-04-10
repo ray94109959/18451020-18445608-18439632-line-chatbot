@@ -1,4 +1,5 @@
 import redis
+import html
 import re
 import pycurl
 from io import BytesIO 
@@ -47,8 +48,8 @@ count = 0
 for result in news:
     # print (result)
     mask = {
-        "name": result[0].replace("<strong>","").replace("</strong>","").replace("&nbsp;",""),
-        "des": result[1],
+        "name": html.unescape(result[0].replace("<strong>","").replace("</strong>","")),
+        "des": html.unescape(result[1]),
         "url": result[2]
     }
     # print (mask)

@@ -14,8 +14,8 @@ redis1 = redis.Redis(host = HOST, password = PWD, port = PORT)
 
 while True:
     url = 'https://youtu.be/FXBaQb8RHjI'
-    msg = input("Please enter your health tips video url (default video if empty, type 'quit' or 'exit' to end):").strip()
-    if msg == 'quit' or msg == 'exit':
+    msg = input("Please enter video url to update health tips (default youtube video if empty, type 'q' to end):").strip()
+    if msg == 'quit' or msg == 'exit' or msg == "q":
         break
     if msg == '':
         msg = url
