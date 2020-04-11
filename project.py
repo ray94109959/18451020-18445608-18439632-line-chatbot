@@ -95,7 +95,7 @@ def handle_TextMessage(event):
         msg = "Hi, my name is Corona, your Novel-Cronavirus Service Ambassador. I can help to answer general inquiries about COVID-19!"
     elif txt == '1':
         #msg = "Sorry, I'm not sure if I can help with that and still under the learning process. Your conversation with COVID-19 may be recorded for training, quality control and dispute handling purposes. Thanks!!"
-        msg = "Face Mask information\n"
+        msg = "Face Mask information:\n"
 
         for count in range(5):
             id = "mask:"+str(count)
@@ -111,7 +111,7 @@ def handle_TextMessage(event):
             data = operUrl.read().decode()
             obj = json.loads(data)
             last = len(obj)-1
-            msg = "Latest situation of reported cases of COVID-19 in Hong Kong\n\n"
+            msg = "Latest situation of reported cases of COVID-19 in Hong Kong:\n\n"
 
             report = str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n").replace("Number of ","")
             msg = msg + report 
@@ -129,7 +129,7 @@ def handle_TextMessage(event):
             obj = json.loads(data)
            
             if len(obj)>0:
-                msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws\n\n"
+                msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws:\n\n"
 
                 count = 0
                 for location in obj:
