@@ -15,7 +15,8 @@ crl = pycurl.Curl()
 
 # Set URL value
 #crl.setopt(crl.URL, 'https://wiki.python.org/moin/BeginnersGuide')
-crl.setopt(crl.URL, 'https://sme.hket.com/article/2555326')
+source = "https://sme.hket.com/article/2555326"
+crl.setopt(crl.URL, source)
 
 # Write bytes that are utf-8 encoded
 crl.setopt(crl.WRITEDATA, b_obj)
@@ -41,18 +42,26 @@ html_body = get_body.decode('utf8')
 
 # shop = re.findall(r"\<p><strong>(.*)<\/strong><\/p>", html_body)
 # news = re.findall(r"\<p>(.*)<a href=\"(.*)\" .*>\u8a73\u60c5<\/a><\/p>", html_body)
-news = re.findall(r"\<p>(.*)<\/p>\n\n\<p>(.*)<a href=\"(.*)\" .*>\u8a73\u60c5<\/a><\/p>", html_body)
+news = re.findall(r"<p>(.*)<\/p>\n\n\<p>(.*)<a href=\"(.*)\" .*>\u8a73\u60c5<\/a><\/p>", html_body)
+time = re.findall(r"<span class=\"article-details-info-container_date\">\n.*<span class=\"font-en\">(.*)<\/span>\n.*<span class=\"font-en\">(.*)<\/span>", html_body)
 
-#print (mask)
+last = time[0][1] + " " + time[0][0]
+
+redis1.set('source_url', source)
+redis1.set('last_udpated', last)
+
+print(redis1.get('source_url').decode('UTF-8'))
+print(redis1.get('last_udpated').decode('UTF-8'))
+
 count = 0
 for result in news:
-    # print (result)
+   
     mask = {
         "name": html.unescape(result[0].replace("<strong>","").replace("</strong>","")),
         "des": html.unescape(result[1]),
         "url": result[2]
     }
-    # print (mask)
+
     id = "mask:"+str(count)
     redis1.hmset(id, mask)
     items = redis1.hgetall(id)
@@ -63,9 +72,6 @@ for result in news:
     print(name)
     print(des)
     print(url)
-    # print(items)
-    # for item in items:
-    #     print(items[item].decode('UTF-8'))
 
     count = count + 1
     if  count >= 10:
