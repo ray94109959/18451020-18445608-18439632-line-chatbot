@@ -143,8 +143,7 @@ def handle_TextMessage(event):
                     if  count >= 10:
                         break
 
-                #report = str(obj).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
-                #msg = msg + report
+                msg = msg + "\n\nSource: https://data.gov.hk/en-data/dataset/hk-dh-chpsebcddr-novel-infectious-agent/resource/70d5b17c-8485-42f0-a0ea-21373b64fe26"
             else:
                 msg = "Sorry, no results found with '"+ event.message.text +"'."    
         else:
