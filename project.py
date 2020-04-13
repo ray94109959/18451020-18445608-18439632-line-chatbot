@@ -103,7 +103,7 @@ def handle_TextMessage(event):
             msg  = msg + "\n" + redis1.hmget(id,"des")[0].decode('UTF-8') + "\n"
             # msg  = msg + "\n" + redis1.hmget(id,"url")[0].decode('UTF-8') 
         msg = msg + "\nSource: " + redis1.get('source_url').decode('UTF-8') 
-        msg = msg + "\nLast updated: " + redis1.get('last_udpated').decode('UTF-8') + "\n"   
+        msg = msg + "\nLast updated: " + redis1.get('last_udpated').decode('UTF-8')  
     elif txt == '2':
         #url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Flatest_situation_of_reported_cases_wuhan_eng.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%7D' 
         url = "https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Flatest_situation_of_reported_cases_covid_19_eng.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%7D"
