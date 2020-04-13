@@ -114,11 +114,7 @@ def handle_TextMessage(event):
             last = len(obj)-1
             msg = "Latest situation of reported cases of COVID-19 in Hong Kong:\n\n"
 
-            msg = msg + str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n")
-            .replace("Number of ","")
-            .replace("ruled out cases: \n","")
-            .replace("cases still hospitalised for investigation: \n","")
-            .replace("cases fulfilling the reporting criteria: \n","")
+            msg = msg + str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n").replace("Number of ","").replace("ruled out cases: \n","").replace("cases still hospitalised for investigation: \n","").replace("cases fulfilling the reporting criteria: \n","")
             msg = msg + "\n\nSource: https://data.gov.hk/en-data/dataset/hk-dh-chpsebcddr-novel-infectious-agent/resource/e92c2d48-9269-4836-8e1a-5f10377f618d"
         else:
             msg = "Server is busy, please try again later....."   
