@@ -130,7 +130,7 @@ def handle_TextMessage(event):
             obj = json.loads(data)
            
             if len(obj)>0:
-                msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws:\n\n"
+                msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws:\n"
 
                 count = 0
                 for location in obj:
@@ -139,7 +139,7 @@ def handle_TextMessage(event):
                     if  count >= 10:
                         break
 
-                msg = msg + "\n\nSource: https://data.gov.hk/en-data/dataset/hk-dh-chpsebcddr-novel-infectious-agent/resource/70d5b17c-8485-42f0-a0ea-21373b64fe26"
+                msg = msg + "\nSource: https://data.gov.hk/en-data/dataset/hk-dh-chpsebcddr-novel-infectious-agent/resource/70d5b17c-8485-42f0-a0ea-21373b64fe26"
             else:
                 msg = "Sorry, no results found with '"+ event.message.text +"'."    
         else:
