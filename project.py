@@ -117,13 +117,13 @@ def handle_TextMessage(event):
 
             msg = msg + str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n").replace("Number of ","").replace("ruled out cases: \n","").replace("cases still hospitalised for investigation: \n","").replace("cases fulfilling the reporting criteria: \n","")
 
-            msg = msg + "As of " + obj[last]['As of date'] + obj[last]['As of time'] 
+            msg = msg + "\nAs of " + obj[last]['As of date'] + obj[last]['As of time'] 
             msg = msg + "\nConfirmed cases #: " + str(obj[last]['Number of confirmed cases']) 
-            change = obj[last]['Number of confirmed cases'] - obj[previous]['Number of confirmed cases'] 
+            change = obj[previous]['Number of confirmed cases'] - obj[last]['Number of confirmed cases'] 
             if change > 0:
-                msg = msg + "(+" + str(change) + ")"
+                msg = msg + " (+" + str(change) + ")"
             elif change < 0:
-                msg = msg + "(" + str(change) + ")"
+                msg = msg + " (" + str(change) + ")"
 
             
             msg = msg + "\n\nSource: https://data.gov.hk/en-data/dataset/hk-dh-chpsebcddr-novel-infectious-agent/resource/e92c2d48-9269-4836-8e1a-5f10377f618d"
