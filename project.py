@@ -128,7 +128,7 @@ def handle_TextMessage(event):
                 msg = msg + " (" + str(change) + ")"
 
             item = "Number of death cases"
-            msg = msg + "\Death cases #: " + str(obj[last][item]) 
+            msg = msg + "\nDeath cases #: " + str(obj[last][item]) 
             change = obj[last][item] - obj[previous][item] 
             if change > 0:
                 msg = msg + " (+" + str(change) + ")"
