@@ -34,7 +34,7 @@ while True:
     
 
     value = 1 + count
-    redis1.set(msg, value)
+    #redis1.set(msg, value)
 
     print('for '+ str(value) +' times' )
     
@@ -53,30 +53,38 @@ while True:
     # the result is a JSON string:
     print(y)
 
-    url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Flatest_situation_of_reported_cases_wuhan_eng.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%7D' 
-   
+    #url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Flatest_situation_of_reported_cases_wuhan_eng.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%7D' 
+    url = "https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Flatest_situation_of_reported_cases_covid_19_eng.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%7D"
     data = urllib.request.urlopen(url).read().decode()
     obj = json.loads(data)
     last = len(obj)-1
+    previous = last - 1
 
+    print(obj[previous])
     print(obj[last])
-    print(obj[last]['Number of confirmed cases'])
+    
 
-
+    print(obj[last]['Number of confirmed cases'] - obj[previous]['Number of confirmed cases'])
+    txt = "\nConfirmed cases #: " + str(obj[last]['Number of confirmed cases'] )
+  
+    change = obj[last]['Number of confirmed cases'] - obj[previous]['Number of confirmed cases'] -100
+    print(format (change,"+"))
+    txt = txt + str(change)
+    print(txt)
     #param = '%E8%A5%BF%E7%92%B0'
     
-    print(msg)
+    #print(msg)
     param = urllib.parse.quote(msg)
-    print(param)
-    #url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22%E8%A5%BF%E7%92%B0%22%5D%5D%5D%7D'
-    url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22'+param+'%22%5D%5D%5D%7D'
+    # print(param)
+    url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22%E8%A5%BF%E7%92%B0%22%5D%5D%5D%7D'
+    #url = 'https://api.data.gov.hk/v2/filter?q=%7B%22resource%22%3A%22http%3A%2F%2Fwww.chp.gov.hk%2Ffiles%2Fmisc%2Fhome_confinees_tier2_building_list.csv%22%2C%22section%22%3A1%2C%22format%22%3A%22json%22%2C%22filters%22%3A%5B%5B3%2C%22ct%22%2C%5B%22'+param+'%22%5D%5D%5D%7D'
     
     operUrl = urllib.request.urlopen(url)
     if(operUrl.getcode()==200):
         data = operUrl.read().decode()
         obj = json.loads(data)
         
-        msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws\n\n"
+        #msg = "List of buildings of the home confinees under mandatory home quarantine according to Cap. 599C of Hong Kong Laws\n\n"
 
         report = str(obj) 
         #.replace("'","").replace("{","").replace("}","").replace(", ","\n")
@@ -84,5 +92,5 @@ while True:
     else:
         msg = "Server is busy, please try again later....."  
 
-    print(msg)    
+    # print(msg)    
 
