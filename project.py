@@ -159,7 +159,7 @@ def handle_TextMessage(event):
             elif change < 0:
                 msg = msg + " (" + str(change) + ")"    
             
-            msg = msg + "\n\nSource: https://data.gov.hk/en-data/dataset/hk-dh-chpsebcddr-novel-infectious-agent/resource/e92c2d48-9269-4836-8e1a-5f10377f618d"
+            msg = msg + "\n\nSource: https://data.gov.hk/en-data/dataset/hk-dh-chpsebcddr-novel-infectious-agent"
         else:
             msg = "Server is busy, please try again later....."   
     elif txt == '3':
@@ -183,7 +183,7 @@ def handle_TextMessage(event):
                     if  count >= 10:
                         break
 
-                msg = msg + "\nSource: https://data.gov.hk/en-data/dataset/hk-dh-chpsebcddr-novel-infectious-agent/resource/70d5b17c-8485-42f0-a0ea-21373b64fe26"
+                msg = msg + "\nSource: https://data.gov.hk/en-data/dataset/hk-dh-chpsebcddr-novel-infectious-agent"
             else:
                 msg = "Sorry, no results found with '"+ event.message.text +"'."    
         else:
