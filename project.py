@@ -135,6 +135,14 @@ def handle_TextMessage(event):
             elif change < 0:
                 msg = msg + " (" + str(change) + ")"    
             
+            item = "Number of discharge cases"
+            msg = msg + "\nDischarge cases #: " + str(obj[last][item]) 
+            change = obj[last][item] - obj[previous][item] 
+            if change > 0:
+                msg = msg + " (+" + str(change) + ")"
+            elif change < 0:
+                msg = msg + " (" + str(change) + ")"    
+            
             msg = msg + "\n\nSource: https://data.gov.hk/en-data/dataset/hk-dh-chpsebcddr-novel-infectious-agent/resource/e92c2d48-9269-4836-8e1a-5f10377f618d"
         else:
             msg = "Server is busy, please try again later....."   
