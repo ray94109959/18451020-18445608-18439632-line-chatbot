@@ -115,9 +115,9 @@ def handle_TextMessage(event):
             previous = last - 1
             msg = "Latest situation of reported cases of COVID-19 in Hong Kong:\n\n"
 
-            msg = msg + str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n").replace("Number of ","").replace("ruled out cases: \n","").replace("cases still hospitalised for investigation: \n","").replace("cases fulfilling the reporting criteria: \n","")
+            # msg = msg + str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n").replace("Number of ","").replace("ruled out cases: \n","").replace("cases still hospitalised for investigation: \n","").replace("cases fulfilling the reporting criteria: \n","")
 
-            msg = msg + "\nAs of " + obj[last]['As of date'] + obj[last]['As of time'] 
+            msg = msg + "\nAs of " + obj[last]['As of date'] + " " + obj[last]['As of time'] 
             
             item = "Number of confirmed cases"
             msg = msg + "\nConfirmed cases #: " + str(obj[last][item]) 
@@ -137,6 +137,22 @@ def handle_TextMessage(event):
             
             item = "Number of discharge cases"
             msg = msg + "\nDischarge cases #: " + str(obj[last][item]) 
+            change = obj[last][item] - obj[previous][item] 
+            if change > 0:
+                msg = msg + " (+" + str(change) + ")"
+            elif change < 0:
+                msg = msg + " (" + str(change) + ")"    
+            
+            item = "Number of probable cases"
+            msg = msg + "\nProbable cases #: " + str(obj[last][item]) 
+            change = obj[last][item] - obj[previous][item] 
+            if change > 0:
+                msg = msg + " (+" + str(change) + ")"
+            elif change < 0:
+                msg = msg + " (" + str(change) + ")"    
+            
+            item = "Number of hospitalised cases in critical condition"
+            msg = msg + "\nCritical cases #: " + str(obj[last][item]) 
             change = obj[last][item] - obj[previous][item] 
             if change > 0:
                 msg = msg + " (+" + str(change) + ")"
