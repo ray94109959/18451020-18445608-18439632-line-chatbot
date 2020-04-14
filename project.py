@@ -113,11 +113,11 @@ def handle_TextMessage(event):
             obj = json.loads(data)
             last = len(obj)-1
             previous = last - 1
-            msg = "Latest situation of reported cases of COVID-19 in Hong Kong:\n\n"
+            msg = "Latest situation of reported cases of COVID-19 in Hong Kong:\n"
 
             # msg = msg + str(obj[last]).replace("[","").replace("]","").replace("{","").replace("}","").replace('"',"").replace("'","").replace("\\n"," ").replace(", ","\n").replace("Number of ","").replace("ruled out cases: \n","").replace("cases still hospitalised for investigation: \n","").replace("cases fulfilling the reporting criteria: \n","")
 
-            msg = msg + "As of: " + obj[last]['As of date'] + " " + obj[last]['As of time'] 
+            msg = msg + "\nAs of: " + obj[last]['As of date'] + " " + obj[last]['As of time'] 
             
             item = "Number of confirmed cases"
             msg = msg + "\nConfirmed cases #: " + str(obj[last][item]) 
